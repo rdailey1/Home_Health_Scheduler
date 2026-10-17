@@ -1,0 +1,21 @@
+patient_id,first_name,last_name,street_address,city,state,zip_code,visit_type,restricted_days,restricted_times,restriction_reason,preferred_days,preferred_times,fixed_day,fixed_start,cert_period_number,episode_start_date,cert_period_start,cert_period_end,earliest_visit_date,latest_visit_date
+101,Mary,Kowalski,237 7th St,Pittsburgh,PA,15222,RA,Thu|Fri,,Family visiting Thursday and Friday,Tue,,,,1,2026-09-30,2026-09-30,2026-11-28,,
+102,Robert,McCarthy,2 PPG Place,Pittsburgh,PA,15222,SOC,,Tue:08:00-09:00,Prefers a little time in the morning before scheduled SOC,,,Tue,10:00,1,2026-10-20,2026-10-20,2026-12-18,2026-10-20,2026-10-20
+103,Patricia,Nowak,20 Stanwix St,Pittsburgh,PA,15222,RC,Tue,Mon:12:00-13:00|Wed:12:00-13:00,Tuesday medical appointment; lunch break Monday/Wednesday,,Mon:13:00-16:00|Wed:13:00-16:00,,,2,2026-06-24,2026-08-23,2026-10-21,2026-10-17,2026-10-21
+104,James,O'Connor,649 Penn Ave,Pittsburgh,PA,15222,DC,Mon|Tue,,Family helping with move early in week,,,,,3,2026-05-18,2026-09-15,2026-11-13,,
+105,Linda,Petro,1247 Smallman St,Pittsburgh,PA,15222,RA,,Mon:08:00-10:00|Tue:08:00-10:00|Wed:08:00-10:00|Thu:08:00-10:00|Fri:08:00-10:00,Refuses visits before 10 AM,,Mon:13:00-17:00|Tue:13:00-17:00|Wed:13:00-17:00|Thu:13:00-17:00|Fri:13:00-17:00,,,3,2026-06-08,2026-10-06,2026-12-04,,
+106,Joseph,Yurkovich,1302 E Carson St,Pittsburgh,PA,15203,RA,,Wed:13:00-16:00,Friend visiting Wednesday afternoon,,Mon:09:00-12:00|Tue:09:00-12:00|Thu:09:00-12:00|Fri:09:00-12:00,,,1,2026-09-02,2026-09-02,2026-10-31,,
+107,Barbara,Miller,1828 E Carson St,Pittsburgh,PA,15203,ROC,,Mon:12:00-13:00,ALF lunch service,,,Mon,09:00,2,2026-08-02,2026-10-01,2026-11-29,,
+108,Thomas,Sullivan,2100 E Carson St,Pittsburgh,PA,15203,RA,Fri,Tue:11:30-13:00|Thu:11:30-13:00,Friday family outing; Tuesday/Thursday communal lunch,,,,,2,2026-07-22,2026-09-20,2026-11-18,,
+109,Susan,DeLuca,2628 E Carson St,Pittsburgh,PA,15203,RA,Mon,Wed:09:00-11:00,Monday medical appointment; Wednesday bingo,Wed,,,,1,2026-10-01,2026-10-01,2026-11-29,,
+110,Richard,Kaczmarek,2429 E Carson St,Pittsburgh,PA,15203,RC,Tue|Wed,Mon:08:00-10:00|Thu:08:00-10:00|Fri:08:00-10:00,Family in town Tuesday/Wednesday; declines early visits,,,,,2,2026-06-26,2026-08-25,2026-10-23,2026-10-19,2026-10-23
+111,Nancy,Rossi,200 Lothrop St,Pittsburgh,PA,15213,RA,,,No patient restrictions reported,,,,,2,2026-07-25,2026-09-23,2026-11-21,,
+112,Michael,Novak,3959 Fifth Ave,Pittsburgh,PA,15213,SOC,,Wed:08:00-09:00,Needs time to prepare before fixed SOC,,,Wed,10:30,1,2026-10-21,2026-10-21,2026-12-19,2026-10-21,2026-10-21
+113,Carol,Fitzgerald,4200 Fifth Ave,Pittsburgh,PA,15213,RA,Thu,Tue:13:00-15:00,Thursday transportation appointment; Tuesday card club,,Tue:09:00-12:00|Wed:09:00-12:00|Fri:09:00-12:00,,,1,2026-09-08,2026-09-08,2026-11-06,,
+114,David,Zielinski,3800 Forbes Ave,Pittsburgh,PA,15213,RC,,Tue:12:00-13:00|Thu:12:00-13:00,ALF lunch on Tuesday and Thursday,,,,,1,2026-08-25,2026-08-25,2026-10-23,2026-10-19,2026-10-23
+115,Margaret,Bianchi,3525 Forbes Ave,Pittsburgh,PA,15213,DC,Mon|Tue,Fri:12:00-13:00,Family visiting Monday/Tuesday; Friday lunch,,,,,2,2026-07-03,2026-09-01,2026-10-30,,
+116,William,Gallagher,5801 Forbes Ave,Pittsburgh,PA,15217,RA,,Mon:08:00-10:00|Tue:08:00-10:00|Wed:08:00-10:00|Thu:08:00-10:00|Fri:08:00-10:00,Declines visits before 10 AM,,Mon:13:00-17:00|Tue:13:00-17:00|Wed:13:00-17:00|Thu:13:00-17:00|Fri:13:00-17:00,,,1,2026-09-24,2026-09-24,2026-11-22,,
+117,Dorothy,Pavlovic,1720 Murray Ave,Pittsburgh,PA,15217,RA,Wed|Thu,Mon:13:00-15:00,Family visiting Wednesday/Thursday; Monday bridge club,Mon,,,,2,2026-07-10,2026-09-08,2026-11-06,,
+118,John,Murphy,5738 Forbes Ave,Pittsburgh,PA,15217,RC,,Thu:12:00-13:00,Standing lunch commitment,,,,,1,2026-08-24,2026-08-24,2026-10-22,2026-10-18,2026-10-22
+119,Helen,Russo,1900 Murray Ave,Pittsburgh,PA,15217,RA,Mon|Tue,Fri:09:00-11:00,Family staying Monday/Tuesday; Friday bingo,,Wed:13:00-17:00|Thu:13:00-17:00|Fri:13:00-17:00,,,3,2026-06-02,2026-09-30,2026-11-28,,
+120,Edward,Szymanski,5840 Forward Ave,Pittsburgh,PA,15217,RC,,Mon:12:00-13:00|Wed:12:00-13:00,Meals program Monday and Wednesday,,,,,1,2026-08-25,2026-08-25,2026-10-23,2026-10-19,2026-10-23
