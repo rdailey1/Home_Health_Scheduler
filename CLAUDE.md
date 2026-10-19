@@ -57,3 +57,4 @@ The developer is a home-health physical therapist; defer to them on clinical wor
 - Geocode and review: python generate_distance_matrix.py
 - Build matrix:       python generate_distance_matrix.py --generate
   (uses data/coordinates.json; no re-geocoding)
+- Run tests:          python3 -m pytest
