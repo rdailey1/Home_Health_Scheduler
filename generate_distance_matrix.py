@@ -1,11 +1,11 @@
 
 import csv
+import json
 import os
 import sys
 from pathlib import Path
 import re
 import requests
-from urllib.parse import urlparse
 
 import openrouteservice
 from dotenv import load_dotenv
@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent
 PATIENTS_FILE = ROOT / "data" / "patients.csv"
 OUTPUT_FILE = ROOT / "data" / "distance_matrix.csv"
+COORDINATES_FILE = ROOT / "data" / "coordinates.json"
 
 HOME_ADDRESS = "2005 Beechwood Blvd, Pittsburgh, PA 15217"
 
@@ -112,7 +113,7 @@ def census_geocode(address):
 
 
 def geocode_locations(client, locations):
-    coordinates = []
+    records = []
     failed = []
 
     for location in locations:
@@ -181,7 +182,13 @@ def geocode_locations(client, locations):
             print(f"REJECTED {location_id}: Outside Pittsburgh")
             continue
 
-        coordinates.append(coords)
+        records.append({
+            "id": location_id,
+            "address": requested,
+            "coordinates": coords,
+            "source": source,
+            "label": label,
+        })
 
         print(
             f"ACCEPTED {location_id:>4} | "
@@ -199,6 +206,53 @@ def geocode_locations(client, locations):
         raise ValueError(
             f"{len(failed)} locations could not be verified. "
             "Distance matrix not generated."
+        )
+
+    return records
+
+
+def save_coordinates(records):
+    COORDINATES_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+    with COORDINATES_FILE.open("w", encoding="utf-8") as file:
+        json.dump(records, file, indent=2)
+        file.write("\n")
+
+    print(f"\nSaved {len(records)} coordinates to {COORDINATES_FILE}")
+
+
+def load_coordinates(locations):
+    """
+    Return cached coordinates in location order.
+
+    Raises if the cache is missing or does not match current addresses,
+    so the matrix is only built from reviewed geocodes.
+    """
+    if not COORDINATES_FILE.exists():
+        raise ValueError(
+            f"{COORDINATES_FILE} not found. "
+            "Run without --generate to geocode and review first."
+        )
+
+    with COORDINATES_FILE.open(encoding="utf-8") as file:
+        cached = {record["id"]: record for record in json.load(file)}
+
+    coordinates = []
+    stale = []
+
+    for location in locations:
+        record = cached.get(location["id"])
+
+        if record is None or record["address"] != location["address"]:
+            stale.append(location["id"])
+            continue
+
+        coordinates.append(record["coordinates"])
+
+    if stale:
+        raise ValueError(
+            f"Cached coordinates missing or outdated for: {', '.join(stale)}. "
+            "Run without --generate to re-geocode and review."
         )
 
     return coordinates
@@ -269,15 +323,17 @@ def main():
     client = openrouteservice.Client(key=api_key)
     locations = load_locations()
 
-    print(f"\nGeocoding {len(locations)} locations:\n")
-    coordinates = geocode_locations(client, locations)
-
     if "--generate" not in sys.argv:
+        print(f"\nGeocoding {len(locations)} locations:\n")
+        records = geocode_locations(client, locations)
+        save_coordinates(records)
         print(
             "\nReview all matched addresses above."
             "\nIf correct, rerun with --generate."
         )
         return
+
+    coordinates = load_coordinates(locations)
 
     print("\nRequesting driving distance matrix...")
     generate_matrix(client, locations, coordinates)
