@@ -1,0 +1,212 @@
+[
+  {
+    "id": "HOME",
+    "address": "2005 Beechwood Blvd, Pittsburgh, PA 15217",
+    "coordinates": [
+      -79.909311336968,
+      40.435794001903
+    ],
+    "source": "Census",
+    "label": "2005 BEECHWOOD BLVD, PITTSBURGH, PA, 15217"
+  },
+  {
+    "id": "101",
+    "address": "237 7th St, Pittsburgh, PA 15222",
+    "coordinates": [
+      -80.000001,
+      40.443095
+    ],
+    "source": "ORS",
+    "label": "237 7th Street, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "102",
+    "address": "2 PPG Place, Pittsburgh, PA 15222",
+    "coordinates": [
+      -80.003251,
+      40.440512
+    ],
+    "source": "ORS",
+    "label": "2 PPG Place, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "103",
+    "address": "20 Stanwix St, Pittsburgh, PA 15222",
+    "coordinates": [
+      -80.005578490312,
+      40.438645671824
+    ],
+    "source": "Census",
+    "label": "20 STANWIX ST, PITTSBURGH, PA, 15222"
+  },
+  {
+    "id": "104",
+    "address": "649 Penn Ave, Pittsburgh, PA 15222",
+    "coordinates": [
+      -80.001041185407,
+      40.443087415851
+    ],
+    "source": "Census",
+    "label": "649 PENN AVE, PITTSBURGH, PA, 15222"
+  },
+  {
+    "id": "105",
+    "address": "1247 Smallman St, Pittsburgh, PA 15222",
+    "coordinates": [
+      -79.992363,
+      40.447162
+    ],
+    "source": "ORS",
+    "label": "1247 Smallman Street, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "106",
+    "address": "1302 E Carson St, Pittsburgh, PA 15203",
+    "coordinates": [
+      -79.985128,
+      40.428688
+    ],
+    "source": "ORS",
+    "label": "1302 East Carson Street, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "107",
+    "address": "1828 E Carson St, Pittsburgh, PA 15203",
+    "coordinates": [
+      -79.979451,
+      40.428398
+    ],
+    "source": "ORS",
+    "label": "1828 East Carson Street, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "108",
+    "address": "2100 E Carson St, Pittsburgh, PA 15203",
+    "coordinates": [
+      -79.976098,
+      40.428301
+    ],
+    "source": "ORS",
+    "label": "2100 East Carson Street, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "109",
+    "address": "2628 E Carson St, Pittsburgh, PA 15203",
+    "coordinates": [
+      -79.968013412604,
+      40.427283877146
+    ],
+    "source": "Census",
+    "label": "2628 E CARSON ST, PITTSBURGH, PA, 15203"
+  },
+  {
+    "id": "110",
+    "address": "2429 E Carson St, Pittsburgh, PA 15203",
+    "coordinates": [
+      -79.96981,
+      40.428126
+    ],
+    "source": "ORS",
+    "label": "2429 East Carson Street, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "111",
+    "address": "200 Lothrop St, Pittsburgh, PA 15213",
+    "coordinates": [
+      -79.960286,
+      40.44324
+    ],
+    "source": "ORS",
+    "label": "200 Lothrop Street, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "112",
+    "address": "3959 Fifth Ave, Pittsburgh, PA 15213",
+    "coordinates": [
+      -79.955974,
+      40.44307
+    ],
+    "source": "ORS",
+    "label": "3959 Fifth Avenue, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "113",
+    "address": "4200 Fifth Ave, Pittsburgh, PA 15213",
+    "coordinates": [
+      -79.953834,
+      40.444804
+    ],
+    "source": "manual",
+    "label": "4200 Fifth Avenue, Pittsburgh, PA (Cathedral of Learning; manually corrected from ORS)"
+  },
+  {
+    "id": "114",
+    "address": "3800 Forbes Ave, Pittsburgh, PA 15213",
+    "coordinates": [
+      -79.956864583306,
+      40.441561709449
+    ],
+    "source": "Census",
+    "label": "3800 FORBES AVE, PITTSBURGH, PA, 15213"
+  },
+  {
+    "id": "115",
+    "address": "3525 Forbes Ave, Pittsburgh, PA 15213",
+    "coordinates": [
+      -79.95874479184,
+      40.44035748157
+    ],
+    "source": "Census",
+    "label": "3525 FORBES AVE, PITTSBURGH, PA, 15213"
+  },
+  {
+    "id": "116",
+    "address": "5801 Forbes Ave, Pittsburgh, PA 15217",
+    "coordinates": [
+      -79.92247,
+      40.438142
+    ],
+    "source": "ORS",
+    "label": "5801 Forbes Avenue, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "117",
+    "address": "1720 Murray Ave, Pittsburgh, PA 15217",
+    "coordinates": [
+      -79.923045250978,
+      40.437799031176
+    ],
+    "source": "Census",
+    "label": "1720 MURRAY AVE, PITTSBURGH, PA, 15217"
+  },
+  {
+    "id": "118",
+    "address": "5738 Forbes Ave, Pittsburgh, PA 15217",
+    "coordinates": [
+      -79.925066017341,
+      40.438011534983
+    ],
+    "source": "Census",
+    "label": "5738 FORBES AVE, PITTSBURGH, PA, 15217"
+  },
+  {
+    "id": "119",
+    "address": "1900 Murray Ave, Pittsburgh, PA 15217",
+    "coordinates": [
+      -79.923134,
+      40.435821
+    ],
+    "source": "ORS",
+    "label": "1900 Murray Avenue, Pittsburgh, PA, USA"
+  },
+  {
+    "id": "120",
+    "address": "5840 Forward Ave, Pittsburgh, PA 15217",
+    "coordinates": [
+      -79.922324,
+      40.429346
+    ],
+    "source": "ORS",
+    "label": "5840 Forward Avenue, Pittsburgh, PA, USA"
+  }
+]
