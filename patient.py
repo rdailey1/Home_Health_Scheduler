@@ -6,11 +6,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 PATIENTS_FILE = ROOT / "data" / "patients.csv"
 
-# Move to config.py (build step A).
-WEEK_START = date(2026, 10, 19)
-WORK_DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri"]
-WORK_START = 8 * 60
-WORK_END = 17 * 60
+# Day names used in patients.csv, in week order.
+WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+
+# Patient availability is independent of clinician hours; an unrestricted
+# day is open all day. Clinician hours are applied by the scheduler.
+DAY_START = 0
+DAY_END = 24 * 60
 
 
 @dataclass
@@ -23,7 +25,8 @@ class Patient:
     restriction_reason: str = ""
 
     # Hard availability: day -> open (start, end) windows in minutes since
-    # midnight. Only days the patient can be seen this week are present.
+    # midnight. Only days the patient can be seen in the planned week are
+    # present.
     windows: dict[str, list[tuple[int, int]]] = field(default_factory=dict)
 
     # Soft preferences (never override windows).
@@ -34,7 +37,7 @@ class Patient:
 
     @property
     def eligible_days(self):
-        return [day for day in WORK_DAYS if day in self.windows]
+        return [day for day in WEEKDAYS if day in self.windows]
 
 
 def to_minutes(value):
@@ -48,7 +51,7 @@ def parse_days(value):
     days = [day for day in value.split("|") if day]
 
     for day in days:
-        if day not in WORK_DAYS:
+        if day not in WEEKDAYS:
             raise ValueError(f"Unknown day: {day!r}")
 
     return days
@@ -62,7 +65,7 @@ def parse_windows(value):
         day, span = entry.split(":", 1)
         start, end = (to_minutes(part) for part in span.split("-"))
 
-        if day not in WORK_DAYS:
+        if day not in WEEKDAYS:
             raise ValueError(f"Unknown day in {entry!r}")
         if start >= end:
             raise ValueError(f"Window ends before it starts: {entry!r}")
@@ -91,13 +94,14 @@ def subtract_windows(windows, blocks):
     return windows
 
 
-def build_windows(row):
+def build_windows(row, week_start):
     """
-    Apply the availability rules in order for each work day:
+    Apply the availability rules in order for each day of the week
+    starting on week_start (a Monday):
 
     1. Visit-date window (earliest/latest_visit_date), if set.
     2. restricted_days.
-    3. available_times if set (unlisted days unavailable), else work hours.
+    3. available_times if set (unlisted days unavailable), else all day.
     4. Subtract restricted_times.
     """
     earliest = row["earliest_visit_date"]
@@ -108,8 +112,8 @@ def build_windows(row):
 
     windows = {}
 
-    for offset, day in enumerate(WORK_DAYS):
-        visit_date = WEEK_START + timedelta(days=offset)
+    for offset, day in enumerate(WEEKDAYS):
+        visit_date = week_start + timedelta(days=offset)
 
         if earliest and visit_date < date.fromisoformat(earliest):
             continue
@@ -119,13 +123,9 @@ def build_windows(row):
             continue
 
         if available:
-            open_windows = [
-                (max(start, WORK_START), min(end, WORK_END))
-                for start, end in available.get(day, [])
-                if start < WORK_END and end > WORK_START
-            ]
+            open_windows = list(available.get(day, []))
         else:
-            open_windows = [(WORK_START, WORK_END)]
+            open_windows = [(DAY_START, DAY_END)]
 
         open_windows = subtract_windows(open_windows, restricted.get(day, []))
 
@@ -135,8 +135,14 @@ def build_windows(row):
     return windows
 
 
-def load_patients(path=PATIENTS_FILE):
-    """Read patients.csv once and return {patient_id: Patient}."""
+def load_patients(week_start, path=PATIENTS_FILE):
+    """
+    Read patients.csv once and return {patient_id: Patient}, with
+    availability resolved for the week starting on week_start.
+    """
+    if week_start.weekday() != 0:
+        raise ValueError(f"week_start must be a Monday, got {week_start}")
+
     patients = {}
 
     with Path(path).open(newline="", encoding="utf-8-sig") as file:
@@ -156,7 +162,7 @@ def load_patients(path=PATIENTS_FILE):
                 ),
                 visit_type=row["visit_type"],
                 restriction_reason=row["restriction_reason"],
-                windows=build_windows(row),
+                windows=build_windows(row, week_start),
                 preferred_days=parse_days(row["preferred_days"]),
                 preferred_times=parse_windows(row["preferred_times"]),
             )

@@ -1,8 +1,10 @@
+from datetime import date
+
 import pytest
 
 from patient import (
-    WORK_END,
-    WORK_START,
+    DAY_END,
+    DAY_START,
     build_windows,
     load_patients,
     parse_windows,
@@ -10,7 +12,8 @@ from patient import (
     to_minutes,
 )
 
-ALL_DAY = [(WORK_START, WORK_END)]
+WEEK_START = date(2026, 10, 19)
+ALL_DAY = [(DAY_START, DAY_END)]
 
 
 def make_row(**overrides):
@@ -28,7 +31,7 @@ def make_row(**overrides):
 
 @pytest.fixture(scope="module")
 def patients():
-    return load_patients()
+    return load_patients(WEEK_START)
 
 
 # --- Parsing helpers ---
@@ -58,11 +61,11 @@ def test_parse_windows_rejects_bad_input(value):
 # --- Window subtraction ---
 
 def test_subtract_splits_window():
-    assert subtract_windows(ALL_DAY, [(720, 780)]) == [(480, 720), (780, 1020)]
+    assert subtract_windows([(480, 1020)], [(720, 780)]) == [(480, 720), (780, 1020)]
 
 
 def test_subtract_trims_start():
-    assert subtract_windows(ALL_DAY, [(480, 600)]) == [(600, 1020)]
+    assert subtract_windows([(480, 1020)], [(480, 600)]) == [(600, 1020)]
 
 
 def test_subtract_non_overlapping_block_is_ignored():
@@ -76,25 +79,26 @@ def test_subtract_full_block_removes_window():
 # --- Availability rules (build_windows) ---
 
 def test_no_restrictions_means_all_week_all_day():
-    windows = build_windows(make_row())
+    windows = build_windows(make_row(), WEEK_START)
     assert windows == {day: ALL_DAY for day in ["Mon", "Tue", "Wed", "Thu", "Fri"]}
 
 
 def test_available_times_excludes_unlisted_days():
-    windows = build_windows(make_row(available_times="Tue:10:00-15:00"))
+    windows = build_windows(make_row(available_times="Tue:10:00-15:00"), WEEK_START)
     assert windows == {"Tue": [(600, 900)]}
 
 
-def test_available_times_clipped_to_work_hours():
-    windows = build_windows(make_row(available_times="Mon:07:00-18:00"))
-    assert windows == {"Mon": ALL_DAY}
+def test_available_times_not_limited_by_clinician_hours():
+    # Clinician hours are applied by the scheduler, not the patient model.
+    windows = build_windows(make_row(available_times="Mon:07:00-18:00"), WEEK_START)
+    assert windows == {"Mon": [(420, 1080)]}
 
 
 def test_restricted_times_subtracted_from_available_times():
     windows = build_windows(make_row(
         available_times="Tue:10:00-15:00",
         restricted_times="Tue:12:00-13:00",
-    ))
+    ), WEEK_START)
     assert windows == {"Tue": [(600, 720), (780, 900)]}
 
 
@@ -102,12 +106,12 @@ def test_restricted_days_override_available_times():
     windows = build_windows(make_row(
         available_times="Tue:10:00-15:00|Thu:10:00-15:00",
         restricted_days="Thu",
-    ))
+    ), WEEK_START)
     assert windows == {"Tue": [(600, 900)]}
 
 
 def test_fully_restricted_day_is_dropped():
-    windows = build_windows(make_row(restricted_times="Mon:08:00-17:00"))
+    windows = build_windows(make_row(restricted_times="Mon:00:00-24:00"), WEEK_START)
     assert "Mon" not in windows
 
 
@@ -116,11 +120,16 @@ def test_visit_date_window_limits_days():
     windows = build_windows(make_row(
         earliest_visit_date="2026-10-20",
         latest_visit_date="2026-10-22",
-    ))
+    ), WEEK_START)
     assert list(windows) == ["Tue", "Wed", "Thu"]
 
 
 # --- Real dataset ---
+
+def test_week_start_must_be_monday():
+    with pytest.raises(ValueError, match="Monday"):
+        load_patients(date(2026, 10, 20))
+
 
 def test_loads_all_patients(patients):
     assert len(patients) == 20
@@ -128,11 +137,11 @@ def test_loads_all_patients(patients):
 
 
 def test_soc_102_mandatory_tuesday_after_nine(patients):
-    assert patients["102"].windows == {"Tue": [(540, 1020)]}
+    assert patients["102"].windows == {"Tue": [(540, DAY_END)]}
 
 
 def test_soc_112_mandatory_wednesday_after_nine(patients):
-    assert patients["112"].windows == {"Wed": [(540, 1020)]}
+    assert patients["112"].windows == {"Wed": [(540, DAY_END)]}
 
 
 def test_dialysis_106_tue_thu_only(patients):
@@ -144,13 +153,13 @@ def test_dialysis_106_tue_thu_only(patients):
 
 def test_rc_103_window_and_lunch(patients):
     # RC window closes Wed 10-21; Tuesday restricted; lunch blocked Mon/Wed.
-    lunch_split = [(480, 720), (780, 1020)]
+    lunch_split = [(DAY_START, 720), (780, DAY_END)]
     assert patients["103"].windows == {"Mon": lunch_split, "Wed": lunch_split}
 
 
 def test_105_no_visits_before_ten(patients):
     assert all(
-        windows == [(600, 1020)] for windows in patients["105"].windows.values()
+        windows == [(600, DAY_END)] for windows in patients["105"].windows.values()
     )
     assert len(patients["105"].eligible_days) == 5
 

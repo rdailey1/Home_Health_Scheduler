@@ -1,3 +1,5 @@
+from datetime import date
+
 import pytest
 
 from patient import load_patients
@@ -15,7 +17,7 @@ def test_loads_all_directed_pairs(travel):
 
 
 def test_covers_home_and_every_patient(travel):
-    expected = {"HOME"} | set(load_patients())
+    expected = {"HOME"} | set(load_patients(date(2026, 10, 19)))
     assert set(travel.locations) == expected
 
 

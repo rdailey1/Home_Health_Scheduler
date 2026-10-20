@@ -37,6 +37,9 @@ The developer is a home-health physical therapist; defer to them on clinical wor
   subtracted afterward in both cases.
 - preferred_days / preferred_times: soft.
 - Time format: `Day:HH:MM-HH:MM`, multiple entries separated by `|`.
+- Patient times never depend on clinician hours: write "not before 10 AM" as
+  `00:00-10:00`, not `08:00-10:00`. The scheduler intersects patient windows
+  with Clinician hours (clinician.py); visit lengths live in visit_rules.py.
 
 ## Data files
 - data/patients.csv: source of patient data and addresses (no separate locations file).
