@@ -9,6 +9,8 @@ def test_default_clinician_matches_mvp():
     assert clinician.work_days == ["Mon", "Tue", "Wed", "Thu", "Fri"]
     assert (clinician.start, clinician.end) == (480, 1020)
     assert clinician.max_visits_per_day == 4
+    assert clinician.visit_buffer == 7
+    assert clinician.start_increment == 30
 
 
 def test_custom_schedule():
@@ -27,6 +29,8 @@ def test_default_work_days_not_shared_between_clinicians():
     {"start": 900, "end": 600},
     {"end": 25 * 60},
     {"max_visits_per_day": 0},
+    {"visit_buffer": -1},
+    {"start_increment": 0},
 ])
 def test_invalid_clinician_rejected(kwargs):
     with pytest.raises(ValueError):

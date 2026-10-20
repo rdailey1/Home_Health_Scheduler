@@ -21,7 +21,12 @@ The developer is a home-health physical therapist; defer to them on clinical wor
 - Days can be mandatory (SOC); appointment times are never fixed.
   DC and ROC days are chosen by the scheduler (schedule built a week ahead).
 - One visit per patient per week. Visits 1 hr; SOC 1.5 hr.
-- Each day starts and ends at HOME.
+- Each day starts and ends at HOME. Work hours (8–17) are patient time: the
+  first visit may start at 8:00 and the last must end by 17:00; HOME legs fall
+  outside work hours but still count as driving.
+- 7 min parking buffer after each drive to a patient. Visits start on the
+  half hour (Clinician.start_increment). Never start early; waiting is fine
+  (in-car documentation) and costs nothing — only driving is minimized.
 - MVP assumptions (Mon–Fri, 8:00–17:00, 4 visits/day) must stay configurable.
   Later: flexible visits/day, selectable work days, max wait between visits.
 - RA/DC timing rules are out of scope (would come from the clinician's calendar).
