@@ -1,6 +1,6 @@
 import pytest
 
-from main import format_time, main
+from main import format_time, main, short_address
 
 
 @pytest.mark.parametrize("minutes, expected", [
@@ -8,6 +8,11 @@ from main import format_time, main
 ])
 def test_format_time(minutes, expected):
     assert format_time(minutes) == expected
+
+
+def test_short_address_keeps_street_and_zip():
+    address = "200 Lothrop St, Pittsburgh, PA 15213"
+    assert short_address(address) == "200 Lothrop St, 15213"
 
 
 def test_main_prints_every_day_and_totals(capsys):

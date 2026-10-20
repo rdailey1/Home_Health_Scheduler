@@ -14,6 +14,13 @@ def format_time(minutes):
     return f"{hours}:{mins:02d}"
 
 
+def short_address(address):
+    """'200 Lothrop St, Pittsburgh, PA 15213' -> '200 Lothrop St, 15213'."""
+    street = address.split(",")[0]
+    zip_code = address.split()[-1]
+    return f"{street}, {zip_code}"
+
+
 def print_day(plan, patients):
     print(
         f"{plan.day}  {len(plan.visits)} visits  "
@@ -28,7 +35,8 @@ def print_day(plan, patients):
         print(
             f"  {visit.patient_id}  {name:<20} {patient.visit_type:<4} "
             f"arrive {format_time(arrival):>5}  "
-            f"{format_time(visit.start):>5}-{format_time(visit.end)}"
+            f"{format_time(visit.start):>5}-{format_time(visit.end):<5}  "
+            f"{short_address(patient.address)}"
         )
 
 
