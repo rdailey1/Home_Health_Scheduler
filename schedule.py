@@ -49,13 +49,20 @@ def earliest_start(arrival, windows, duration, clinician):
     return None
 
 
+def parking_buffer(previous, patient, clinician):
+    """No parking between consecutive patients at the same address."""
+    if patient.address and patient.address == previous.address:
+        return 0
+    return clinician.visit_buffer
+
+
 def evaluate_day(day, patient_ids, patients, clinician, travel):
     """
     Simulate one day: HOME -> patients in the given order -> HOME.
 
     The first visit may start at clinician.start (the drive from HOME is
-    outside work hours). Each later visit starts after driving, parking,
-    and rounding up to the start increment, waiting if the patient's
+    outside work hours). Each later visit starts after driving, parking
+    (skipped at the same address), and rounding up to the start increment, waiting if the patient's
     window has not opened. Every visit must end within the patient's
     window and by clinician.end. The drive home is outside work hours.
     Driving minutes and miles always include both HOME legs.
@@ -100,7 +107,7 @@ def evaluate_day(day, patient_ids, patients, clinician, travel):
             arrival = (
                 time
                 + travel.minutes(previous, patient_id)
-                + clinician.visit_buffer
+                + parking_buffer(patients[previous], patient, clinician)
             )
 
         duration = visit_duration(patient.visit_type)

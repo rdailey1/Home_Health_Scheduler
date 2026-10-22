@@ -2,11 +2,11 @@
 
 # Visit length in minutes, by visit type.
 VISIT_MINUTES = {
-    "SOC": 90,
-    "ROC": 60,
-    "RC": 60,
-    "RA": 60,
-    "DC": 60,
+    "SOC": 75,
+    "ROC": 45,
+    "RC": 45,
+    "RA": 45,
+    "DC": 30,
 }
 
 

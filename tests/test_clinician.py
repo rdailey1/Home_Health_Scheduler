@@ -38,9 +38,10 @@ def test_invalid_clinician_rejected(kwargs):
 
 
 def test_visit_durations():
-    assert visit_duration("SOC") == 90
-    for visit_type in ["ROC", "RC", "RA", "DC"]:
-        assert visit_duration(visit_type) == 60
+    assert visit_duration("SOC") == 75
+    assert visit_duration("DC") == 30
+    for visit_type in ["ROC", "RC", "RA"]:
+        assert visit_duration(visit_type) == 45
 
 
 def test_unknown_visit_type_rejected():

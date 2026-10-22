@@ -45,7 +45,7 @@ Patients are assumed available during clinician working hours unless a specific 
 - **Target week:** Monday–Friday, October 19–23, 2026.
 - **Clinician:** one clinician working 8:00 AM–5:00 PM, up to four visits per day. Each day starts and ends at the clinician's home base.
 - **Visit frequency:** one visit per patient per week, the standard frequency in home health.
-- **Visit durations:** 1 hour, except start of care (SOC) at 1.5 hours.
+- **Visit durations:** 45 minutes, except start of care (SOC) at 75 minutes and discharge (DC) at 30 minutes. Driving and parking are modeled separately.
 - **Mandatory days:** SOC visits occur on a fixed day. Visit times are never fixed.
 - **Discharge (DC) and resumption of care (ROC):** a DC day must be set 48 hours in advance and an ROC day is agreed with the patient. Because schedules are assumed to be built the week prior, the scheduler chooses these days, limited only by patient and clinician availability.
 - **Recertification (RC):** must occur within the five-day window ending on the last day of the certification period.
