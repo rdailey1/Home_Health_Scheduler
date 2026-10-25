@@ -1,0 +1,13 @@
+# Dark teal theme: off-white text and gridlines, no bright white panels.
+[theme]
+base = "dark"
+primaryColor = "#0D9488"
+backgroundColor = "#0F3D3E"
+secondaryBackgroundColor = "#164E50"
+textColor = "#F1F5F4"
+linkColor = "#99F6E4"
+font = "sans serif"
+borderColor = "#A7C4C1"
+dataframeBorderColor = "#D9E4E2"
+dataframeHeaderBackgroundColor = "#0B2E2F"
+dataframeHeaderTextColor = "#FFFFFF"

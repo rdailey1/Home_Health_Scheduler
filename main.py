@@ -2,6 +2,7 @@ from datetime import date
 
 from baseline import sample_schedules
 from clinician import Clinician
+from display import format_time, short_address
 from insertion import build_schedule
 from patient import load_patients
 from reorder import reorder_week
@@ -9,19 +10,6 @@ from travel import TravelTimes
 
 WEEK_START = date(2026, 10, 19)
 RANDOM_SAMPLES = 1000
-
-
-def format_time(minutes):
-    """Minutes since midnight -> 'H:MM' (24-hour), rounded to the minute."""
-    hours, mins = divmod(round(minutes), 60)
-    return f"{hours}:{mins:02d}"
-
-
-def short_address(address):
-    """'200 Lothrop St, Pittsburgh, PA 15213' -> '200 Lothrop St, 15213'."""
-    street = address.split(",")[0]
-    zip_code = address.split()[-1]
-    return f"{street}, {zip_code}"
 
 
 def print_day(plan, patients):
