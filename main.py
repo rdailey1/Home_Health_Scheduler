@@ -3,6 +3,7 @@ from datetime import date
 from clinician import Clinician
 from insertion import build_schedule
 from patient import load_patients
+from reorder import reorder_week
 from travel import TravelTimes
 
 WEEK_START = date(2026, 10, 19)
@@ -55,10 +56,30 @@ def print_week(schedule, patients):
     print(f"Unscheduled: {', '.join(schedule.unscheduled) or 'none'}")
 
 
+def print_stages(stages):
+    """Weekly driving after each improvement step."""
+    print(f"\n{'Stage':<22}{'Minutes':>8}{'Miles':>8}")
+
+    for name, schedule in stages:
+        print(
+            f"{name:<22}{schedule.drive_minutes:>8.1f}"
+            f"{schedule.drive_miles:>8.1f}"
+        )
+
+
 def main():
     patients = load_patients(WEEK_START)
-    schedule = build_schedule(patients, Clinician(), TravelTimes())
-    print_week(schedule, patients)
+    clinician = Clinician()
+    travel = TravelTimes()
+
+    inserted = build_schedule(patients, clinician, travel)
+    reordered = reorder_week(inserted, patients, clinician, travel)
+
+    print_week(reordered, patients)
+    print_stages([
+        ("Insertion", inserted),
+        ("+ Reorder each day", reordered),
+    ])
 
 
 if __name__ == "__main__":
