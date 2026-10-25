@@ -11,202 +11,202 @@
   },
   {
     "id": "101",
-    "address": "237 7th St, Pittsburgh, PA 15222",
+    "address": "3205 Penn Ave, Pittsburgh, PA 15201",
     "coordinates": [
-      -80.000001,
-      40.443095
+      -79.969900341288,
+      40.460882873416
     ],
-    "source": "ORS",
-    "label": "237 7th Street, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "3205 PENN AVE, PITTSBURGH, PA, 15201"
   },
   {
     "id": "102",
-    "address": "2 PPG Place, Pittsburgh, PA 15222",
+    "address": "2125 Los Angeles Ave, Pittsburgh, PA 15216",
     "coordinates": [
-      -80.003251,
-      40.440512
+      -80.028910733074,
+      40.404811197222
     ],
-    "source": "ORS",
-    "label": "2 PPG Place, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "2125 LOS ANGELES AVE, PITTSBURGH, PA, 15216"
   },
   {
     "id": "103",
-    "address": "20 Stanwix St, Pittsburgh, PA 15222",
+    "address": "2416 Sarah St, Pittsburgh, PA 15203",
     "coordinates": [
-      -80.005578490312,
-      40.438645671824
+      -79.971193385411,
+      40.427178500612
     ],
     "source": "Census",
-    "label": "20 STANWIX ST, PITTSBURGH, PA, 15222"
+    "label": "2416 SARAH ST, PITTSBURGH, PA, 15203"
   },
   {
     "id": "104",
-    "address": "649 Penn Ave, Pittsburgh, PA 15222",
+    "address": "1100 Creedmoor Ave, Pittsburgh, PA 15226",
     "coordinates": [
-      -80.001041185407,
-      40.443087415851
+      -80.014822683115,
+      40.390926512356
     ],
     "source": "Census",
-    "label": "649 PENN AVE, PITTSBURGH, PA, 15222"
+    "label": "1100 CREEDMOOR AVE, PITTSBURGH, PA, 15226"
   },
   {
     "id": "105",
-    "address": "1247 Smallman St, Pittsburgh, PA 15222",
+    "address": "1700 Grandview Ave, Pittsburgh, PA 15211",
     "coordinates": [
-      -79.992363,
-      40.447162
+      -80.023822568336,
+      40.440768388109
     ],
-    "source": "ORS",
-    "label": "1247 Smallman Street, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "1700 GRANDVIEW AVE, PITTSBURGH, PA, 15211"
   },
   {
     "id": "106",
-    "address": "1302 E Carson St, Pittsburgh, PA 15203",
+    "address": "1500 Letort St, Pittsburgh, PA 15212",
     "coordinates": [
-      -79.985128,
-      40.428688
+      -80.037825637279,
+      40.47990836802
     ],
-    "source": "ORS",
-    "label": "1302 East Carson Street, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "1500 LETORT ST, PITTSBURGH, PA, 15212"
   },
   {
     "id": "107",
-    "address": "1828 E Carson St, Pittsburgh, PA 15203",
+    "address": "2129 Brownsville Rd, Pittsburgh, PA 15210",
     "coordinates": [
-      -79.979451,
-      40.428398
+      -79.986211,
+      40.392082
     ],
     "source": "ORS",
-    "label": "1828 East Carson Street, Pittsburgh, PA, USA"
+    "label": "2129 Brownsville Road, Pittsburgh, PA, USA"
   },
   {
     "id": "108",
-    "address": "2100 E Carson St, Pittsburgh, PA 15203",
+    "address": "601 Pressley St, Pittsburgh, PA 15212",
     "coordinates": [
-      -79.976098,
-      40.428301
+      -79.998895343047,
+      40.451982738852
     ],
-    "source": "ORS",
-    "label": "2100 East Carson Street, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "601 PRESSLEY ST, PITTSBURGH, PA, 15212"
   },
   {
     "id": "109",
-    "address": "2628 E Carson St, Pittsburgh, PA 15203",
+    "address": "320 Fort Duquesne Blvd, Pittsburgh, PA 15222",
     "coordinates": [
-      -79.968013412604,
-      40.427283877146
+      -80.00678,
+      40.442658
     ],
-    "source": "Census",
-    "label": "2628 E CARSON ST, PITTSBURGH, PA, 15203"
+    "source": "ORS",
+    "label": "320 Fort Duquesne Boulevard, Pittsburgh, PA, USA"
   },
   {
     "id": "110",
-    "address": "2429 E Carson St, Pittsburgh, PA 15203",
+    "address": "403 Oakland Ave, Pittsburgh, PA 15213",
     "coordinates": [
-      -79.96981,
-      40.428126
+      -79.953145473421,
+      40.438477439122
     ],
-    "source": "ORS",
-    "label": "2429 East Carson Street, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "403 OAKLAND AVE, PITTSBURGH, PA, 15213"
   },
   {
     "id": "111",
-    "address": "200 Lothrop St, Pittsburgh, PA 15213",
+    "address": "500 Alden Dr, Pittsburgh, PA 15216",
     "coordinates": [
-      -79.960286,
-      40.44324
+      -80.059347468721,
+      40.393005144565
     ],
-    "source": "ORS",
-    "label": "200 Lothrop Street, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "500 ALDEN DR, PITTSBURGH, PA, 15216"
   },
   {
     "id": "112",
-    "address": "3959 Fifth Ave, Pittsburgh, PA 15213",
+    "address": "1306 Brookline Blvd, Pittsburgh, PA 15226",
     "coordinates": [
-      -79.955974,
-      40.44307
+      -80.010716789832,
+      40.392222639837
     ],
-    "source": "ORS",
-    "label": "3959 Fifth Avenue, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "1306 BROOKLINE BLVD, PITTSBURGH, PA, 15226"
   },
   {
     "id": "113",
-    "address": "4200 Fifth Ave, Pittsburgh, PA 15213",
+    "address": "510 Protectory Pl, Pittsburgh, PA 15219",
     "coordinates": [
-      -79.953834,
-      40.444804
+      -79.985173659867,
+      40.441787257053
     ],
-    "source": "manual",
-    "label": "4200 Fifth Avenue, Pittsburgh, PA (Cathedral of Learning; manually corrected from ORS)"
+    "source": "Census",
+    "label": "510 PROTECTORY PL, PITTSBURGH, PA, 15219"
   },
   {
     "id": "114",
-    "address": "3800 Forbes Ave, Pittsburgh, PA 15213",
+    "address": "2129 Brownsville Rd, Pittsburgh, PA 15210",
     "coordinates": [
-      -79.956864583306,
-      40.441561709449
+      -79.986211,
+      40.392082
     ],
-    "source": "Census",
-    "label": "3800 FORBES AVE, PITTSBURGH, PA, 15213"
+    "source": "ORS",
+    "label": "2129 Brownsville Road, Pittsburgh, PA, USA"
   },
   {
     "id": "115",
-    "address": "3525 Forbes Ave, Pittsburgh, PA 15213",
+    "address": "4742 Centre Ave, Pittsburgh, PA 15213",
     "coordinates": [
-      -79.95874479184,
-      40.44035748157
+      -79.948041,
+      40.45274
     ],
-    "source": "Census",
-    "label": "3525 FORBES AVE, PITTSBURGH, PA, 15213"
+    "source": "ORS",
+    "label": "4742 Centre Avenue, Pittsburgh, PA, USA"
   },
   {
     "id": "116",
-    "address": "5801 Forbes Ave, Pittsburgh, PA 15217",
+    "address": "710 W North Ave, Pittsburgh, PA 15212",
     "coordinates": [
-      -79.92247,
-      40.438142
+      -80.014177,
+      40.454337
     ],
     "source": "ORS",
-    "label": "5801 Forbes Avenue, Pittsburgh, PA, USA"
+    "label": "710 West North Avenue, Pittsburgh, PA, USA"
   },
   {
     "id": "117",
-    "address": "1720 Murray Ave, Pittsburgh, PA 15217",
+    "address": "11 Venture St, Pittsburgh, PA 15214",
     "coordinates": [
-      -79.923045250978,
-      40.437799031176
+      -80.013322,
+      40.484668
     ],
-    "source": "Census",
-    "label": "1720 MURRAY AVE, PITTSBURGH, PA, 15217"
+    "source": "ORS",
+    "label": "11 Venture Street, Pittsburgh, PA, USA"
   },
   {
     "id": "118",
-    "address": "5738 Forbes Ave, Pittsburgh, PA 15217",
+    "address": "2403 Perrysville Ave, Pittsburgh, PA 15214",
     "coordinates": [
-      -79.925066017341,
-      40.438011534983
+      -80.010239,
+      40.467819
     ],
-    "source": "Census",
-    "label": "5738 FORBES AVE, PITTSBURGH, PA, 15217"
+    "source": "ORS",
+    "label": "2403 Perrysville Avenue, Pittsburgh, PA, USA"
   },
   {
     "id": "119",
-    "address": "1900 Murray Ave, Pittsburgh, PA 15217",
+    "address": "1206 Arlington Ave, Pittsburgh, PA 15210",
     "coordinates": [
-      -79.923134,
-      40.435821
+      -79.992381,
+      40.421515
     ],
     "source": "ORS",
-    "label": "1900 Murray Avenue, Pittsburgh, PA, USA"
+    "label": "1206 Arlington Avenue, Pittsburgh, PA, USA"
   },
   {
     "id": "120",
-    "address": "5840 Forward Ave, Pittsburgh, PA 15217",
+    "address": "1235 Yetta Ave, Pittsburgh, PA 15212",
     "coordinates": [
-      -79.922324,
-      40.429346
+      -79.992475829275,
+      40.463183167336
     ],
-    "source": "ORS",
-    "label": "5840 Forward Avenue, Pittsburgh, PA, USA"
+    "source": "Census",
+    "label": "1235 YETTA AVE, PITTSBURGH, PA, 15212"
   }
 ]

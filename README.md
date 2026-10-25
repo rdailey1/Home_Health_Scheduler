@@ -27,7 +27,14 @@ The optimization objective is to minimize weekly clinician travel while respecti
 
 ## Synthetic Dataset
 
-The project uses 20 fictional patient records across four Pittsburgh, Pennsylvania ZIP codes: 15222, 15203, 15213, and 15217. Pittsburgh, PA was chosen due to its interesting geographical terrain, including bridges, tunnels as well as traffic patterns.
+The project uses 20 fictional patient records spread across a realistic single-clinician territory in Pittsburgh, Pennsylvania: downtown and the Hill District (15219, 15222), Oakland and Lawrenceville (15201, 15213), the North Side (15212, 15214), south of the Monongahela (15203, 15210, 15211), and beyond the Liberty Tunnel (15216, 15226). The clinician lives just outside the territory near Frick Park (15217). Pittsburgh was chosen for its terrain: three rivers, many bridges, and two tunnels make day assignment and visit order matter.
+
+The data deliberately includes scenarios that test the scheduler:
+
+- **Tunnel trips:** Medicare fixes two start-of-care visits beyond the tunnel on different days, forcing two trips; flexible nearby patients should join those days.
+- **Dialysis:** a North Side patient available only Tuesday/Thursday should be pulled away from the tunnel day.
+- **Narrow windows:** one patient is available only 14:00–17:00; two patients on opposite sides of the river are both limited to Thursday 9:00–10:30, so one must move.
+- **Same building:** two patients live in one senior building; consecutive visits there need no driving or parking.
 
 Patient locations use public-address stand-ins rather than actual residential or patient addresses. All patient identities, clinical information, and scheduling restrictions are synthetic.
 

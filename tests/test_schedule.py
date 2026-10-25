@@ -179,8 +179,8 @@ def test_real_tuesday_101_then_102(real):
     patients, travel = real
     plan = evaluate_day("Tue", ["101", "102"], patients, Clinician(), travel)
     assert plan.feasible
-    # 101 8:00-8:45; arrive 102 ~8:53, not before 9:00 -> 9:00-10:15 (SOC).
-    assert starts(plan) == [(480, 525), (540, 615)]
+    # 101 8:00-8:45; arrive 102 ~9:09 -> 9:30-10:45 (SOC).
+    assert starts(plan) == [(480, 525), (570, 645)]
     assert plan.drive_minutes == pytest.approx(
         travel.minutes("HOME", "101")
         + travel.minutes("101", "102")
@@ -192,8 +192,8 @@ def test_real_tuesday_102_then_101(real):
     patients, travel = real
     plan = evaluate_day("Tue", ["102", "101"], patients, Clinician(), travel)
     assert plan.feasible
-    # 102 cannot start before 9:00 -> 9:00-10:15; 101 arrives ~10:23 -> 10:30.
-    assert starts(plan) == [(540, 615), (630, 675)]
+    # 102 cannot start before 9:00 -> 9:00-10:15; 101 arrives ~10:38 -> 11:00.
+    assert starts(plan) == [(540, 615), (660, 705)]
 
 
 def test_real_dialysis_patient_not_seen_monday(real):
