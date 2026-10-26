@@ -68,3 +68,6 @@ The developer is a home-health physical therapist; defer to them on clinical wor
 - Build matrix:       python generate_distance_matrix.py --generate
   (uses data/coordinates.json; no re-geocoding)
 - Run tests:          python3 -m pytest
+- Run app:            python3 -m streamlit run app.py
+- Exact benchmark:    pip install -r requirements-benchmark.txt; python3 benchmark.py
+  (on demand only; not used by main.py or the app)
