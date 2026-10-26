@@ -7,13 +7,12 @@ from clinician import Clinician
 from display import (
     day_label,
     format_availability,
+    format_swap,
     format_time,
     short_address,
 )
-from insertion import build_schedule
-from main import RANDOM_SAMPLES, WEEK_START
+from main import RANDOM_SAMPLES, WEEK_START, plan_week
 from patient import load_patients
-from reorder import reorder_week
 from travel import TravelTimes
 
 
@@ -81,38 +80,42 @@ def show_schedule(schedule, patients):
         st.dataframe(rows, hide_index=True, width="stretch")
 
 
-def show_comparison(inserted, reordered):
+def stage_row(name, schedule):
+    return {
+        "Stage": name,
+        "Minutes": round(schedule.drive_minutes, 1),
+        "Miles": round(schedule.drive_miles, 1),
+    }
+
+
+def show_comparison(stages, swaps):
+    final = stages[-1][1]
+
     with st.expander("How good is this schedule?"):
+        rows = [stage_row(name, schedule) for name, schedule in stages]
+
         st.write(
             f"Compare against {RANDOM_SAMPLES:,} random schedules that respect "
             "every restriction but ignore driving."
         )
-        if not st.button("Run comparison (a few seconds)", key="compare"):
-            return
+        if st.button("Run comparison (a few seconds)", key="compare"):
+            weeks = sorted(random_weeks(), key=lambda w: w.drive_minutes)
+            median = weeks[len(weeks) // 2]
+            beaten = sum(w.drive_minutes > final.drive_minutes for w in weeks)
+            rows.insert(0, stage_row(f"Random (median of {RANDOM_SAMPLES:,})", median))
+            st.write(
+                f"Random weeks range from {weeks[0].drive_minutes:.1f} to "
+                f"{weeks[-1].drive_minutes:.1f} min. This schedule beats "
+                f"{beaten / len(weeks):.1%} of them."
+            )
 
-        weeks = sorted(random_weeks(), key=lambda w: w.drive_minutes)
-        median = weeks[len(weeks) // 2]
-        beaten = sum(w.drive_minutes > reordered.drive_minutes for w in weeks)
+        st.dataframe(rows, hide_index=True)
 
-        st.dataframe(
-            [
-                {"Stage": f"Random (median of {RANDOM_SAMPLES:,})",
-                 "Minutes": round(median.drive_minutes, 1),
-                 "Miles": round(median.drive_miles, 1)},
-                {"Stage": "Insertion",
-                 "Minutes": round(inserted.drive_minutes, 1),
-                 "Miles": round(inserted.drive_miles, 1)},
-                {"Stage": "+ Reorder each day",
-                 "Minutes": round(reordered.drive_minutes, 1),
-                 "Miles": round(reordered.drive_miles, 1)},
-            ],
-            hide_index=True,
-        )
-        st.write(
-            f"Random weeks range from {weeks[0].drive_minutes:.1f} to "
-            f"{weeks[-1].drive_minutes:.1f} min. This schedule beats "
-            f"{beaten / len(weeks):.1%} of them."
-        )
+        st.markdown("**Swaps between days**")
+        for swap in swaps:
+            st.write(format_swap(swap))
+        if not swaps:
+            st.write("None")
 
 
 def main():
@@ -126,16 +129,12 @@ def main():
     show_patients(patients)
 
     if st.button("Generate schedule", type="primary", key="generate"):
-        inserted = build_schedule(patients, clinician, travel)
-        st.session_state.schedule = (
-            inserted,
-            reorder_week(inserted, patients, clinician, travel),
-        )
+        st.session_state.plan = plan_week(patients, clinician, travel)
 
-    if "schedule" in st.session_state:
-        inserted, reordered = st.session_state.schedule
-        show_schedule(reordered, patients)
-        show_comparison(inserted, reordered)
+    if "plan" in st.session_state:
+        stages, swaps = st.session_state.plan
+        show_schedule(stages[-1][1], patients)
+        show_comparison(stages, swaps)
 
 
 main()

@@ -8,8 +8,8 @@ def test_app_generates_schedule_and_comparison():
 
     at.button(key="generate").click().run()
     assert not at.exception
-    assert len(at.dataframe) == 6  # patients + one table per day
+    assert len(at.dataframe) == 7  # patients, one table per day, stages
 
     at.button(key="compare").click().run()
     assert not at.exception
-    assert len(at.dataframe) == 7  # + stage comparison
+    assert len(at.dataframe) == 7  # stages now include the random row

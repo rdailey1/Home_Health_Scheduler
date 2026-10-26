@@ -2,10 +2,11 @@ from datetime import date
 
 from baseline import sample_schedules
 from clinician import Clinician
-from display import format_time, short_address
+from display import format_swap, format_time, short_address
 from insertion import build_schedule
 from patient import load_patients
 from reorder import reorder_week
+from swaps import swap_between_days
 from travel import TravelTimes
 
 WEEK_START = date(2026, 10, 19)
@@ -67,6 +68,22 @@ def print_random_range(random_weeks, schedule):
     )
 
 
+def plan_week(patients, clinician, travel):
+    """
+    Run each improvement step. Returns [(stage name, WeekSchedule)] ending
+    with the final schedule, and the swaps made between days.
+    """
+    inserted = build_schedule(patients, clinician, travel)
+    reordered = reorder_week(inserted, patients, clinician, travel)
+    swapped, swaps = swap_between_days(inserted, patients, clinician, travel)
+    stages = [
+        ("Insertion", inserted),
+        ("+ Reorder each day", reordered),
+        ("+ Swap between days", swapped),
+    ]
+    return stages, swaps
+
+
 def main():
     patients = load_patients(WEEK_START)
     clinician = Clinician()
@@ -76,16 +93,18 @@ def main():
     median_week = sorted(random_weeks, key=lambda w: w.drive_minutes)[
         len(random_weeks) // 2
     ]
-    inserted = build_schedule(patients, clinician, travel)
-    reordered = reorder_week(inserted, patients, clinician, travel)
+    stages, swaps = plan_week(patients, clinician, travel)
+    final = stages[-1][1]
 
-    print_week(reordered, patients)
-    print_stages([
-        (f"Random (median of {RANDOM_SAMPLES})", median_week),
-        ("Insertion", inserted),
-        ("+ Reorder each day", reordered),
-    ])
-    print_random_range(random_weeks, reordered)
+    print_week(final, patients)
+    print_stages([(f"Random (median of {RANDOM_SAMPLES})", median_week), *stages])
+    print_random_range(random_weeks, final)
+
+    print("\nSwaps between days:")
+    for swap in swaps:
+        print(f"  {format_swap(swap)}")
+    if not swaps:
+        print("  none")
 
 
 if __name__ == "__main__":

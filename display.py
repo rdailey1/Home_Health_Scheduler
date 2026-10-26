@@ -55,3 +55,11 @@ def day_label(day, week_start):
     """('Tue', Monday Oct 19) -> 'Tue Oct 20'."""
     date = week_start + timedelta(days=WEEKDAYS.index(day))
     return f"{day} {date:%b} {date.day}"
+
+
+def format_swap(swap):
+    """'Swapped 107 (Wed) and 109 (Fri): saves 5.5 min'."""
+    return (
+        f"Swapped {swap.first} ({swap.first_day}) and "
+        f"{swap.second} ({swap.second_day}): saves {swap.saved_minutes:.1f} min"
+    )
